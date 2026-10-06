@@ -1,0 +1,81 @@
+{
+  "collectionName": "components_scenario_scenario_fields",
+  "info": {
+    "displayName": "Scenario Field",
+    "icon": "layout",
+    "description": "Configuration for a single field on the Create Scenario form"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "required": true,
+      "default": "text",
+      "enum": [
+        "text",
+        "textarea",
+        "richText",
+        "select",
+        "number",
+        "url",
+        "file"
+      ]
+    },
+    "tab": {
+      "type": "enumeration",
+      "required": true,
+      "default": "basic",
+      "enum": [
+        "basic",
+        "teaching",
+        "media",
+        "assign"
+      ]
+    },
+    "required": {
+      "type": "boolean",
+      "default": false
+    },
+    "options": {
+      "type": "json"
+    },
+    "placeholder": {
+      "type": "string"
+    },
+    "minHeight": {
+      "type": "string"
+    },
+    "defaultValue": {
+      "type": "string"
+    },
+    "min": {
+      "type": "integer"
+    },
+    "max": {
+      "type": "integer"
+    },
+    "step": {
+      "type": "integer"
+    },
+    "multiple": {
+      "type": "boolean",
+      "default": false
+    },
+    "accept": {
+      "type": "string"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::tab.tab"
+    }
+  }
+}

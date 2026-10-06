@@ -29,6 +29,11 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Plugin =>
       jwtManagement: 'refresh',
       sessions: {
         httpOnly: true,
+        cookie: {
+          name: 'strapi_session',
+          sameSite: 'lax',
+          secure: env('NODE_ENV') === 'production',
+        },
       },
     },
   },

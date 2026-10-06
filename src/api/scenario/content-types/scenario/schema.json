@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "scenarios",
+  "info": {
+    "singularName": "scenario",
+    "pluralName": "scenarios",
+    "displayName": "Scenario"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "fields": {
+      "type": "component",
+      "component": "scenario.scenario-field",
+      "repeatable": true,
+      "required": true
+    }
+  }
+}

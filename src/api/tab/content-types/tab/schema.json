@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tabs",
+  "info": {
+    "singularName": "tab",
+    "pluralName": "tabs",
+    "displayName": "Tab"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "scenario_design": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::scenario-design.scenario-design"
+    },
+    "tab": {
+      "type": "component",
+      "component": "tab.tab",
+      "repeatable": true
+    }
+  }
+}
