@@ -513,7 +513,7 @@ export interface ApiScenarioDesignScenarioDesign
     singularName: 'scenario-design';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   pluginOptions: {
     i18n: {
@@ -547,7 +547,6 @@ export interface ApiScenarioDesignScenarioDesign
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Blocks &
-      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -604,8 +603,16 @@ export interface ApiScenarioDesignScenarioDesign
         };
       }>;
     publishedAt: Schema.Attribute.DateTime;
+    reviewStatus: Schema.Attribute.Enumeration<
+      ['draft', 'pending_review', 'published', 'rejected']
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Schema.Attribute.DefaultTo<'draft'>;
     rubric: Schema.Attribute.Media<'files', true> &
-      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -643,7 +650,7 @@ export interface ApiScenarioScenario extends Struct.CollectionTypeSchema {
     singularName: 'scenario';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;

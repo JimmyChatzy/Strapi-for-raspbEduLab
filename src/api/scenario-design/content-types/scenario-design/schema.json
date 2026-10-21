@@ -7,7 +7,7 @@
     "displayName": "ScenarioDesign"
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {
     "i18n": {
@@ -92,7 +92,7 @@
           "localized": true
         }
       },
-      "required": true
+      "required": false
     },
     "goals": {
       "type": "blocks",
@@ -142,9 +142,24 @@
         }
       },
       "multiple": true,
-      "required": true,
+      "required": false,
       "allowedTypes": [
         "files"
+      ]
+    },
+    "reviewStatus": {
+      "type": "enumeration",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "default": "draft",
+      "enum": [
+        "draft",
+        "pending_review",
+        "published",
+        "rejected"
       ]
     }
   }

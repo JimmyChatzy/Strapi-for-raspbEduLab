@@ -1,20 +1,34 @@
-// import type { Core } from '@strapi/strapi';
+import type { Core } from '@strapi/strapi';
+
+const SD = 'api::scenario-design.scenario-design';
+
+const GRANTS: Record<string, string[]> = {
+  public: [`${SD}.find`, `${SD}.findOne`],
+  authenticated: [
+    `${SD}.find`, `${SD}.findOne`, `${SD}.create`, `${SD}.update`, `${SD}.delete`,
+    `${SD}.mine`, `${SD}.submit`,
+    'plugin::upload.content-api.upload',
+    'plugin::upload.content-api.find',
+    'plugin::upload.content-api.findOne',
+  ],
+};
 
 export default {
-  /**
-   * An asynchronous register function that runs before
-   * your application is initialized.
-   *
-   * This gives you an opportunity to extend code.
-   */
-  register(/* { strapi }: { strapi: Core.Strapi } */) {},
+  register() {},
 
-  /**
-   * An asynchronous bootstrap function that runs before
-   * your application gets started.
-   *
-   * This gives you an opportunity to set up your data model,
-   * run jobs, or perform some special logic.
-   */
-  bootstrap(/* { strapi }: { strapi: Core.Strapi } */) {},
+  async bootstrap({ strapi }: { strapi: Core.Strapi }) {
+    for (const [type, actions] of Object.entries(GRANTS)) {
+      const role = await strapi.db.query('plugin::users-permissions.role').findOne({ where: { type } });
+      if (!role) continue;
+
+      for (const action of actions) {
+        const exists = await strapi.db
+          .query('plugin::users-permissions.permission')
+          .findOne({ where: { action, role: role.id } });
+        if (!exists) {
+          await strapi.db.query('plugin::users-permissions.permission').create({ data: { action, role: role.id } });
+        }
+      }
+    }
+  },
 };
