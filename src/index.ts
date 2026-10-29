@@ -7,6 +7,7 @@ const GRANTS: Record<string, string[]> = {
   authenticated: [
     `${SD}.find`, `${SD}.findOne`, `${SD}.create`, `${SD}.update`, `${SD}.delete`,
     `${SD}.mine`, `${SD}.submit`,
+    'api::profile.profile.update',
     'plugin::upload.content-api.upload',
     'plugin::upload.content-api.find',
     'plugin::upload.content-api.findOne',

@@ -45,11 +45,13 @@
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "required": true,
+      "default": 2
     },
     "author": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "plugin::users-permissions.user"
     },
     "pictures": {
@@ -74,16 +76,18 @@
       "required": true,
       "enum": [
         "Α' Δημοτικού",
-        "Β' Δημοτικού"
+        "Β' Δημοτικού",
+        "Γ' Δημοτικού",
+        "Δ' Δημοτικού",
+        "Ε' Δημοτικού",
+        "Στ' Δημοτικού",
+        "Α' Γυμνασίου",
+        "Β' Γυμνασίου",
+        "Γ' Γυμνασίου",
+        "Α' Λυκείου",
+        "Β' Λυκείου",
+        "Γ' Λυκείου"
       ]
-    },
-    "idea": {
-      "type": "blocks",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
     },
     "description": {
       "type": "blocks",
@@ -92,7 +96,24 @@
           "localized": true
         }
       },
-      "required": false
+      "required": true
+    },
+    "idea": {
+      "type": "blocks",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true
+    },
+    "steps": {
+      "type": "blocks",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "goals": {
       "type": "blocks",
@@ -100,7 +121,8 @@
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "required": true
     },
     "theory": {
       "type": "blocks",
@@ -116,7 +138,8 @@
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "required": true
     },
     "construction": {
       "type": "blocks",
@@ -127,6 +150,14 @@
       }
     },
     "tinkercad": {
+      "type": "blocks",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "evaluation": {
       "type": "blocks",
       "pluginOptions": {
         "i18n": {

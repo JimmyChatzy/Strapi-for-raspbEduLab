@@ -1,4 +1,4 @@
-/*export default {
+export default {
   routes: [
     {
       method: 'GET',
@@ -7,7 +7,6 @@
       config: { auth: false },
     },
     { method: 'GET', path: '/scenario-designs/mine', handler: 'scenario-design.mine' },
-    { method: 'POST', path: '/scenario-designs/:documentId/submit', handler: 'scenario-design.submit' },
+    { method: 'POST', path: '/scenario-designs/:id/submit', handler: 'scenario-design.submit' },
   ],
 };
-*/

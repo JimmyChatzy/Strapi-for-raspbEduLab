@@ -522,13 +522,23 @@ export interface ApiScenarioDesignScenarioDesign
   };
   attributes: {
     author: Schema.Attribute.Relation<
-      'oneToOne',
+      'manyToOne',
       'plugin::users-permissions.user'
     >;
     class: Schema.Attribute.Enumeration<
       [
         "\u0391' \u0394\u03B7\u03BC\u03BF\u03C4\u03B9\u03BA\u03BF\u03CD",
         "\u0392' \u0394\u03B7\u03BC\u03BF\u03C4\u03B9\u03BA\u03BF\u03CD",
+        "\u0393' \u0394\u03B7\u03BC\u03BF\u03C4\u03B9\u03BA\u03BF\u03CD",
+        "\u0394' \u0394\u03B7\u03BC\u03BF\u03C4\u03B9\u03BA\u03BF\u03CD",
+        "\u0395' \u0394\u03B7\u03BC\u03BF\u03C4\u03B9\u03BA\u03BF\u03CD",
+        "\u03A3\u03C4' \u0394\u03B7\u03BC\u03BF\u03C4\u03B9\u03BA\u03BF\u03CD",
+        "\u0391' \u0393\u03C5\u03BC\u03BD\u03B1\u03C3\u03AF\u03BF\u03C5",
+        "\u0392' \u0393\u03C5\u03BC\u03BD\u03B1\u03C3\u03AF\u03BF\u03C5",
+        "\u0393' \u0393\u03C5\u03BC\u03BD\u03B1\u03C3\u03AF\u03BF\u03C5",
+        "\u0391' \u039B\u03C5\u03BA\u03B5\u03AF\u03BF\u03C5",
+        "\u0392' \u039B\u03C5\u03BA\u03B5\u03AF\u03BF\u03C5",
+        "\u0393' \u039B\u03C5\u03BA\u03B5\u03AF\u03BF\u03C5",
       ]
     > &
       Schema.Attribute.Required &
@@ -547,6 +557,7 @@ export interface ApiScenarioDesignScenarioDesign
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Blocks &
+      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -568,24 +579,35 @@ export interface ApiScenarioDesignScenarioDesign
       }> &
       Schema.Attribute.DefaultTo<'\u0395\u03CD\u03BA\u03BF\u03BB\u03BF'>;
     duration: Schema.Attribute.Decimal &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.DefaultTo<2>;
+    equipment: Schema.Attribute.Blocks &
+      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
-    equipment: Schema.Attribute.Blocks &
+    evaluation: Schema.Attribute.Blocks &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
     goals: Schema.Attribute.Blocks &
+      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
     idea: Schema.Attribute.Blocks &
+      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -613,6 +635,12 @@ export interface ApiScenarioDesignScenarioDesign
       }> &
       Schema.Attribute.DefaultTo<'draft'>;
     rubric: Schema.Attribute.Media<'files', true> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    steps: Schema.Attribute.Blocks &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1170,6 +1198,10 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
+      }>;
+    fullName: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
       }>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<

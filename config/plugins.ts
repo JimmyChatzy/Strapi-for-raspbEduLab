@@ -28,6 +28,7 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Plugin =>
     config: {
       jwtManagement: "legacy-support",
       jwt: { expiresIn: "30d" },
+      register: { allowedFields: ["fullName"] },
     },
   },
   email: {
